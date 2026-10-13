@@ -1,0 +1,61 @@
+[deps.uv]
+auto = true
+
+[settings]
+experimental = true
+lockfile = true
+
+[tasks.check]
+description = "Run all linter and formatter checks with hk against changed files"
+run = "hk check --no-fail-fast"
+
+[tasks.check-all]
+description = "Run all linter and formatter checks with hk against all files"
+run = "hk check --all --no-fail-fast"
+
+[tasks.fix]
+description = "Fix all linter and formatter issues with hk against changed files"
+run = "hk fix --no-fail-fast"
+
+[tasks.fix-all]
+description = "Fix all linter and formatter issues with hk against all files"
+run = "hk fix --all --no-fail-fast"
+
+[tasks.setup]
+description = "Pin versions and install the git hooks in a new project"
+run = ["git rev-parse --git-dir >/dev/null 2>&1 || git init --quiet", "mise run pin", "hk install"]
+
+[tasks.test]
+description = "Run tests with pytest"
+run = "uv run pytest"
+
+[tasks.update-template]
+description = "Pull in changes from the python-template copier template"
+run = ["uvx copier update --skip-answered --answers-file .copier-answers.yaml", "mise run pin"]
+
+[tools."aqua:owenlamont/ryl"]
+version = "0.24.0"
+
+[tools.hk]
+version = "2.6.0"
+
+[tools.pkl]
+version = "0.32.1"
+
+[tools.ruff]
+version = "0.17.0"
+
+[tools.rumdl]
+version = "0.2.79"
+
+[tools.tombi]
+version = "1.8.4"
+
+[tools.ty]
+version = "0.0.86"
+
+[tools.typos]
+version = "1.51.1"
+
+[tools.uv]
+version = "0.13.0"

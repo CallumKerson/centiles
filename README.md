@@ -1,0 +1,29 @@
+# centiles
+
+A CLI for everything to do with baby measurement percentiles.
+
+## Usage
+
+```sh
+uv run centiles hello --name World
+```
+
+## Development
+
+Tools come from [mise](https://mise.jdx.dev) and Python dependencies from
+[uv](https://docs.astral.sh/uv/).
+
+```sh
+mise run setup        # install the tools and git hooks
+mise run test         # run the tests
+mise run fix-all      # apply linter and formatter fixes
+mise run check-all    # run all linters, formatters and type checks
+```
+
+[hk](https://hk.jdx.dev) runs the checks as a pre-commit hook and checks that
+commit messages follow
+[conventional commits](https://www.conventionalcommits.org).
+
+This project was created from
+[python-template](https://github.com/CallumKerson/python-template). Pull in
+template changes with `mise run update-template`.
