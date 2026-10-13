@@ -13,6 +13,11 @@ run = "hk check --no-fail-fast"
 description = "Run all linter and formatter checks with hk against all files"
 run = "hk check --all --no-fail-fast"
 
+[tasks.f]
+description = "Run the centiles CLI for a female baby, e.g. mise run f weight --age 13w2d --value 6.1"
+env = { CENTILES_SEX = "female" }
+run = "uv run centiles"
+
 [tasks.fix]
 description = "Fix all linter and formatter issues with hk against changed files"
 run = "hk fix --no-fail-fast"
@@ -20,6 +25,11 @@ run = "hk fix --no-fail-fast"
 [tasks.fix-all]
 description = "Fix all linter and formatter issues with hk against all files"
 run = "hk fix --all --no-fail-fast"
+
+[tasks.m]
+description = "Run the centiles CLI for a male baby, e.g. mise run m weight --age 13w2d --value 6.1"
+env = { CENTILES_SEX = "male" }
+run = "uv run centiles"
 
 [tasks.setup]
 description = "Pin versions and install the git hooks in a new project"

@@ -1,2 +1,5 @@
 [files]
 extend-exclude = ["*.lock"]
+
+[default.extend-words]
+nd = "nd"  # Ordinal suffix, as in 2nd

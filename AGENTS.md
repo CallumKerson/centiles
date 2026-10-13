@@ -11,13 +11,20 @@ The `centiles` CLI is built with
 - `mise run check-all` runs all linters, formatters and type checks through hk;
   `mise run fix-all` applies fixes. Run both checks and tests before
   committing.
-- `uv run centiles <args>` runs the CLI.
+- `uv run centiles <args>` runs the CLI; `mise run f <args>` and
+  `mise run m <args>` run it with `CENTILES_SEX` set.
 
 ## Layout
 
 - `src/centiles/cli.py`: the cyclopts `app`, exposed as the
-  `centiles` script in `pyproject.toml`. Add commands with
-  `@app.command`.
+  `centiles` script in `pyproject.toml`. The `weight`, `height` and `head`
+  commands each take `--sex` (or `CENTILES_SEX`) plus two of `--age`, `--value`
+  and `--centile`, and share `_run` to print the third.
+- `src/centiles/growth.py`: plain functions over
+  [rcpchgrowth](https://github.com/rcpch/rcpchgrowth-python) and its UK-WHO
+  reference: age parsing and formatting, `centile_for`, `value_for`, and
+  `age_for` (which bisects over age). They raise `ValueError` for bad input,
+  which the CLI prints as an error.
 - `tests/`: pytest tests. Call `app([...])` with CLI tokens; it exits via
   `SystemExit`, so wrap calls in `pytest.raises(SystemExit)`.
 
