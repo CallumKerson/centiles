@@ -31,6 +31,28 @@ def test_age_from_value_and_centile(capsys: pytest.CaptureFixture[str]) -> None:
     assert out == "Age: 40w 5d (9m 11d)\n"
 
 
+def test_age_on_comparison_centile(capsys: pytest.CaptureFixture[str]) -> None:
+    code, out, _ = run(capsys, "height", "--sex", "m", "--age", "3m", "--centile", "90", "--compare", "50")
+
+    assert code == 0
+    assert out == "Height: 64.05 cm, reached on the 50th centile at 17w 5d (4m 2d)\n"
+
+
+@pytest.mark.parametrize(
+    "tokens",
+    [
+        ("--age", "3m", "--value", "60", "--compare", "50"),
+        ("--value", "60", "--centile", "90", "--compare", "50"),
+        ("--age", "3m", "--centile", "90", "--value", "60", "--compare", "50"),
+    ],
+)
+def test_compare_needs_age_and_centile(capsys: pytest.CaptureFixture[str], tokens: tuple[str, ...]) -> None:
+    code, _, err = run(capsys, "height", "--sex", "m", *tokens)
+
+    assert code == 1
+    assert "--compare with --age and --centile" in err
+
+
 def test_height(capsys: pytest.CaptureFixture[str]) -> None:
     code, out, _ = run(capsys, "height", "--sex", "male", "--age", "1y", "--centile", "50")
 

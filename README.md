@@ -16,11 +16,20 @@ centiles weight --sex m --value 9 --centile 50    # Age: 40w 5d (9m 11d)
 centiles head --sex female --age 6m --centile 50  # Head circumference: 42.20 cm
 ```
 
+Add `--compare` with an age and centile to find the age at which a child on
+another centile has the same value. For a 3 month old boy on the 90th centile
+for height, the age at which a boy on the 50th centile is as tall:
+
+```sh
+centiles height --sex m --age 3m --centile 90 --compare 50
+# Height: 64.05 cm, reached on the 50th centile at 17w 5d (4m 2d)
+```
+
 - `--sex` is `male`, `female`, `m` or `f`. Set `CENTILES_SEX` to avoid passing
   it every time; `--sex` still wins when given.
 - `--age` takes units `y`, `m`, `w` and `d`, like `13w2d`, `6m` or `1y3m`. A
   month is a twelfth of a year and a year is 365.25 days.
-- `--centile` is between 0 and 100, not inclusive.
+- `--centile` and `--compare` are between 0 and 100, not inclusive.
 
 Run with `uv run centiles` from a checkout, or use `mise run f` and `mise run m`
 to run it with the sex already set:

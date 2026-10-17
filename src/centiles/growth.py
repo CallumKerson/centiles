@@ -117,3 +117,10 @@ def age_for(measurement: Measurement, sex: Sex, value: float, centile: float) ->
         else:
             high = middle
     return (low + high) / 2
+
+
+def matching_age(measurement: Measurement, sex: Sex, age: float, centile: float, compare: float) -> tuple[float, float]:
+    """Return the value on a centile at an age, and the age at which the comparison centile reaches that value."""
+    value = value_for(measurement, sex, age, centile)
+    _check_centile(compare)
+    return value, age_for(measurement, sex, value, compare)

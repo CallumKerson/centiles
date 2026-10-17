@@ -1,6 +1,6 @@
 import pytest
 
-from centiles.growth import Measurement, Sex, age_for, format_age, parse_age, value_for
+from centiles.growth import Measurement, Sex, age_for, format_age, matching_age, parse_age, value_for
 
 
 @pytest.mark.parametrize(
@@ -59,3 +59,21 @@ def test_centile_must_be_in_range() -> None:
 def test_age_must_be_covered() -> None:
     with pytest.raises(ValueError):
         value_for("head", "female", 18, 50)
+
+
+def test_matching_age_on_same_centile() -> None:
+    value, age = matching_age("height", "male", 0.25, 75, 75)
+
+    assert value == pytest.approx(value_for("height", "male", 0.25, 75))
+    assert age == pytest.approx(0.25, abs=1 / 365.25)
+
+
+def test_matching_age_on_lower_centile_is_older() -> None:
+    _, age = matching_age("height", "male", 0.25, 90, 50)
+
+    assert age > 0.25
+
+
+def test_compare_centile_must_be_in_range() -> None:
+    with pytest.raises(ValueError):
+        matching_age("weight", "male", 1, 50, 0)

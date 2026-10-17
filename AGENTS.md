@@ -19,12 +19,15 @@ The `centiles` CLI is built with
 - `src/centiles/cli.py`: the cyclopts `app`, exposed as the
   `centiles` script in `pyproject.toml`. The `weight`, `height` and `head`
   commands each take `--sex` (or `CENTILES_SEX`) plus two of `--age`, `--value`
-  and `--centile`, and share `_run` to print the third.
+  and `--centile`, and share `_run` to print the third. With `--compare`, they
+  take `--age` and `--centile` and print the age at which the comparison
+  centile reaches the same value.
 - `src/centiles/growth.py`: plain functions over
   [rcpchgrowth](https://github.com/rcpch/rcpchgrowth-python) and its UK-WHO
   reference: age parsing and formatting, `centile_for`, `value_for`, and
-  `age_for` (which bisects over age). They raise `ValueError` for bad input,
-  which the CLI prints as an error.
+  `age_for` (which bisects over age), and `matching_age`, which chains
+  `value_for` and `age_for` for `--compare`. They raise `ValueError` for bad
+  input, which the CLI prints as an error.
 - `tests/`: pytest tests. Call `app([...])` with CLI tokens; it exits via
   `SystemExit`, so wrap calls in `pytest.raises(SystemExit)`.
 
