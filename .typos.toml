@@ -1,5 +1,5 @@
 [files]
-extend-exclude = ["*.lock"]
+extend-exclude = ["CHANGELOG.md", "*.lock"]
 
 [default.extend-words]
 nd = "nd"  # Ordinal suffix, as in 2nd
