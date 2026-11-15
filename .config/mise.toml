@@ -5,6 +5,10 @@ auto = true
 experimental = true
 lockfile = true
 
+[tasks.build]
+description = "Build the sdist and wheel into dist/"
+run = ["rm -rf dist", "uv build"]
+
 [tasks.check]
 description = "Run all linter and formatter checks with hk against changed files"
 run = "hk check --no-fail-fast"
@@ -12,6 +16,24 @@ run = "hk check --no-fail-fast"
 [tasks.check-all]
 description = "Run all linter and formatter checks with hk against all files"
 run = "hk check --all --no-fail-fast"
+
+[tasks.check-auto]
+description = "Check all files on main, or only changed files on other branches"
+run = '''
+if [ "$(git branch --show-current)" = "main" ]; then
+  mise run check-all
+else
+  mise run check-pr
+fi
+'''
+
+[tasks.check-pr]
+description = "Run all checks against files changed since main"
+run = ["git fetch origin main", "hk check --from-ref origin/main --to-ref HEAD --no-fail-fast"]
+
+[tasks.ci]
+description = "Run the checks and tests CI runs"
+depends = ["check-auto", "test"]
 
 [tasks.f]
 description = "Run the centiles CLI for a female baby, e.g. mise run f weight --age 13w2d --value 6.1"
@@ -25,6 +47,10 @@ run = "hk fix --no-fail-fast"
 [tasks.fix-all]
 description = "Fix all linter and formatter issues with hk against all files"
 run = "hk fix --all --no-fail-fast"
+
+[tasks.fix-pr]
+description = "Fix issues in files changed since main"
+run = ["git fetch origin main", "hk fix --from-ref origin/main --to-ref HEAD --no-fail-fast"]
 
 [tasks.m]
 description = "Run the centiles CLI for a male baby, e.g. mise run m weight --age 13w2d --value 6.1"
@@ -44,10 +70,20 @@ description = "Pull in changes from the python-template copier template"
 run = ["uvx copier update --skip-answered --answers-file .copier-answers.yaml", "mise run pin"]
 
 [tools."aqua:owenlamont/ryl"]
-version = "0.24.0"
+version = "0.26.1"
+
+[tools.aube]
+version = "2.10.0"
 
 [tools.hk]
 version = "2.6.0"
+
+[tools.jactionlint]
+version = "2.5.0"
+
+[tools.oxfmt]
+version = "0.78.0"
+depends = ["aube"]
 
 [tools.pkl]
 version = "0.32.1"
@@ -57,6 +93,9 @@ version = "0.17.0"
 
 [tools.rumdl]
 version = "0.2.79"
+
+[tools.shellcheck]
+version = "0.11.0"
 
 [tools.tombi]
 version = "1.8.4"

@@ -13,6 +13,7 @@ The `centiles` CLI is built with
   committing.
 - `uv run centiles <args>` runs the CLI; `mise run f <args>` and
   `mise run m <args>` run it with `CENTILES_SEX` set.
+- `mise run build` builds the sdist and wheel into `dist/`.
 
 ## Layout
 
@@ -40,7 +41,16 @@ The `centiles` CLI is built with
 - hk (`.config/hk.pkl`) runs ruff, ty, rumdl (Markdown), ryl (YAML), tombi
   (TOML), typos and file hygiene checks as a pre-commit hook, and checks
   commit messages follow conventional commits.
-- There is no CI; hk hooks are the only gate.
+- GitHub Actions runs `mise run ci` on pull requests and `main`. On `main`,
+  release-please runs once CI passes and makes releases from conventional
+  commits, and the Release Artefacts workflow attaches each release's sdist
+  and wheel.
+- Renovate updates dependencies using the shared
+  [CallumKerson/renovate-config](https://github.com/CallumKerson/renovate-config)
+  preset, pinned to a release in `.github/renovate.json`. Put rules only this
+  repo needs there too.
+- jactionlint rejects actions not pinned to a commit. Pin new ones with
+  `mise exec pinact@latest -- pinact run`.
 - Tool and dependency versions belong to this repo. The
   [python-template](https://github.com/CallumKerson/python-template) copier
   template only adds new tools unversioned; `mise run update-template` pulls

@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "A CLI for everything to do with baby measurement percentiles"
 readme = "README.md"
 requires-python = ">=3.14"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
 authors = [{ name = "Callum Kerson", email = "12272439+CallumKerson@users.noreply.github.com" }]
 dependencies = [
   "cyclopts>=5.2.0",

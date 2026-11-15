@@ -54,6 +54,23 @@ mise run check-all    # run all linters, formatters and type checks
 commit messages follow
 [conventional commits](https://www.conventionalcommits.org).
 
+## Releases
+
+[release-please](https://github.com/googleapis/release-please) opens a release
+pull request from conventional commits on `main`. It uses a GitHub App's token,
+so release pull requests run CI. The repository needs the App's client ID in
+the `RELEASE_APP_CLIENT_ID` variable and its private key in the
+`RELEASE_APP_PRIVATE_KEY` secret. Each release gets its sdist and wheel
+attached, so it can be installed with `gh release download` even while the
+repository is private.
+
 This project was created from
 [python-template](https://github.com/CallumKerson/python-template). Pull in
 template changes with `mise run update-template`.
+
+## Licence
+
+centiles is licensed under the
+[GNU Affero General Public License v3.0 or later](LICENSE). It uses
+[rcpchgrowth](https://github.com/rcpch/rcpchgrowth-python), which is licensed
+under the same terms, for the UK-WHO reference data and calculations.
