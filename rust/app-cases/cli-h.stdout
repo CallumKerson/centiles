@@ -1,0 +1,13 @@
+A CLI for everything to do with baby measurement percentiles.
+
+Usage: centiles [COMMAND]
+
+Commands:
+  weight  Work out weight, age or centile from the other two.
+  height  Work out length or height, age or centile from the other two.
+  head    Work out head circumference, age or centile from the other two.
+  help    Print this message or the help of the given subcommand(s)
+
+Options:
+      --version  Display application version.
+  -h, --help     Print help

@@ -4,12 +4,25 @@ import "package://github.com/jdx/hk/releases/download/v2.6.0/hk@2.6.0#/Builtins.
 
 min_hk_version = "2.6.0"
 
-// mise lock writes .config/mise/locks
-exclude = List(".config/mise/locks/**", "CHANGELOG.md", "LICENSE")
+// mise lock writes .config/mise/locks. rust-anything writes the recorded cases, reference
+// data and its own state under rust/; formatting them would change what they record.
+exclude =
+  List(
+    ".config/mise/locks/**",
+    "CHANGELOG.md",
+    "LICENSE",
+    "rust/app-cases/**",
+    "rust/**/rust-anything.json",
+    "rust/centiles-rs/recorded-from.json",
+  )
 
 local linters = new Mapping<String, Step> {
   ["byte_order_marker"] = Builtins.byte_order_marker
-  ["check_added_large_files"] = Builtins.check_added_large_files
+  // Builtins.check_added_large_files, skipping files Git LFS stores, as pre-commit's check does.
+  ["check_added_large_files"] = new Step {
+    check =
+      #"git check-attr -z filter -- {{files}} | xargs -0 -n3 sh -c '[ "$2" = lfs ] || printf "%s\0" "$0"' | xargs -0 -r hk util check-added-large-files"#
+  }
   ["check_case_conflict"] = Builtins.check_case_conflict
   ["check_executables_have_shebangs"] = Builtins.check_executables_have_shebangs
   ["check_merge_conflict"] = Builtins.check_merge_conflict

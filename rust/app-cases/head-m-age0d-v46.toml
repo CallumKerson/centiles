@@ -1,0 +1,4 @@
+bin.name = "centiles"
+args = ["head", "--sex", "m", "--age", "0d", "--value", "46"]
+status.code = 0
+fs.sandbox = true

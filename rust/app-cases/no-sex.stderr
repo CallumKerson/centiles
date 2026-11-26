@@ -1,0 +1,6 @@
+error: the following required arguments were not provided:
+  --sex <sex>
+
+Usage: centiles weight --sex <sex> --age <age> --centile <centile>
+
+For more information, try '--help'.

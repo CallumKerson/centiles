@@ -1,0 +1,8 @@
+{
+  "schema": "rust-anything/app-cases@1",
+  "name": "centiles",
+  "run": [
+    ".venv/bin/centiles"
+  ],
+  "timeout_secs": 30
+}

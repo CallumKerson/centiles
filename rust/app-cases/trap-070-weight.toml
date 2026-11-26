@@ -1,0 +1,4 @@
+bin.name = "centiles"
+args = ["weight", "--sex", "m", "--value", "9007199254740993", "--centile", "50"]
+status.code = 1
+fs.sandbox = true

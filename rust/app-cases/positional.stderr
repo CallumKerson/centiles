@@ -1,0 +1,5 @@
+error: unexpected argument 'f' found
+
+Usage: centiles weight [OPTIONS] --sex <sex>
+
+For more information, try '--help'.

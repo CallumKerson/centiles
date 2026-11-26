@@ -1,0 +1,241 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/Users/Khriss/Repos/github.com/CallumKerson/centiles.rust-anything-port",
+  "unit": "src/centiles/",
+  "language": "python",
+  "kind": "pyo3",
+  "crate_name": "centiles-rs",
+  "exports": [
+    {
+      "name": "parse_age",
+      "file": "src/centiles/growth.py",
+      "line": 23,
+      "params": [
+        {
+          "name": "text",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "number",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "format_age",
+      "file": "src/centiles/growth.py",
+      "line": 33,
+      "params": [
+        {
+          "name": "years",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "max_age",
+      "file": "src/centiles/growth.py",
+      "line": 55,
+      "params": [
+        {
+          "name": "measurement",
+          "ts_type": "Measurement",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "sex",
+          "ts_type": "Sex",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "number",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "centile_for",
+      "file": "src/centiles/growth.py",
+      "line": 74,
+      "params": [
+        {
+          "name": "measurement",
+          "ts_type": "Measurement",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "sex",
+          "ts_type": "Sex",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "age",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "value",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "tuple",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "value_for",
+      "file": "src/centiles/growth.py",
+      "line": 87,
+      "params": [
+        {
+          "name": "measurement",
+          "ts_type": "Measurement",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "sex",
+          "ts_type": "Sex",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "age",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "centile",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "number",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "age_for",
+      "file": "src/centiles/growth.py",
+      "line": 104,
+      "params": [
+        {
+          "name": "measurement",
+          "ts_type": "Measurement",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "sex",
+          "ts_type": "Sex",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "value",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "centile",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "number",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "matching_age",
+      "file": "src/centiles/growth.py",
+      "line": 122,
+      "params": [
+        {
+          "name": "measurement",
+          "ts_type": "Measurement",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "sex",
+          "ts_type": "Sex",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "age",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "centile",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "compare",
+          "ts_type": "number",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "tuple",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "weight",
+      "file": "src/centiles/cli.py",
+      "line": 80,
+      "reason": "decorated with `@app.command`"
+    },
+    {
+      "name": "height",
+      "file": "src/centiles/cli.py",
+      "line": 110,
+      "reason": "decorated with `@app.command`"
+    },
+    {
+      "name": "head",
+      "file": "src/centiles/cli.py",
+      "line": 140,
+      "reason": "decorated with `@app.command`"
+    }
+  ]
+}

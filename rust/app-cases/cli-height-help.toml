@@ -1,0 +1,4 @@
+bin.name = "centiles"
+args = ["height", "--help"]
+status.code = 0
+fs.sandbox = true

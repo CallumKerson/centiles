@@ -1,0 +1,5 @@
+bin.name = "centiles"
+args = ["weight", "--age", "6m", "--centile", "50"]
+env.add.CENTILES_SEX = "girl"
+status.code = 2
+fs.sandbox = true

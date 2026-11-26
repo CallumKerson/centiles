@@ -1,0 +1,20 @@
+dev-dependencies = { trycmd = "1" }
+profile = { release.lto = true, release.codegen-units = 1 }
+
+[package]
+name = "centiles"
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.97"
+description = "`centiles` in Rust, lifted by rust-anything from its front door"
+publish = false
+
+[workspace]
+
+[[bin]]
+name = "centiles"
+path = "src/main.rs"
+
+[dependencies]
+centiles-rs = { path = "../centiles-rs" }
+clap = { version = "4", features = ["env"] }

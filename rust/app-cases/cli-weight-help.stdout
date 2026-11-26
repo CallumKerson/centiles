@@ -1,0 +1,11 @@
+Work out weight, age or centile from the other two.
+
+Usage: centiles weight [OPTIONS] --sex <sex>
+
+Options:
+      --sex <sex>          The baby's sex. [env: CENTILES_SEX=] [possible values: male, female, m, f]
+      --age <age>          Age, like 13w2d, 6m or 1y3m.
+      --value <value>      Weight in kg.
+      --centile <centile>  Centile, between 0 and 100.
+      --compare <compare>  Comparison centile. Give with --age and --centile to find the age at which a child on this centile has the same value.
+  -h, --help               Print help

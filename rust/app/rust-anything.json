@@ -1,0 +1,23 @@
+{
+  "schema": "rust-anything/front-door@1",
+  "name": "centiles",
+  "commands": [
+    "head",
+    "height",
+    "weight"
+  ],
+  "units": [
+    {
+      "name": "centiles",
+      "crate": "centiles-rs",
+      "path": "../centiles-rs",
+      "commands": [
+        "weight",
+        "height",
+        "head"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_CENTILES"
+    }
+  ],
+  "lifted": true
+}
