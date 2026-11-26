@@ -7,6 +7,7 @@ version = "0.2.0"
 edition = "2024"
 rust-version = "1.97"
 description = "`centiles` in Rust, lifted by rust-anything from its front door"
+license = "AGPL-3.0-or-later"
 publish = false
 
 [workspace]

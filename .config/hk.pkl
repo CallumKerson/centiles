@@ -1,8 +1,8 @@
-amends "package://github.com/jdx/hk/releases/download/v2.6.0/hk@2.6.0#/Config.pkl"
+amends "package://github.com/jdx/hk/releases/download/v2.14.0/hk@2.14.0#/Config.pkl"
 
-import "package://github.com/jdx/hk/releases/download/v2.6.0/hk@2.6.0#/Builtins.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.14.0/hk@2.14.0#/Builtins.pkl"
 
-min_hk_version = "2.6.0"
+min_hk_version = "2.14.0"
 
 // mise lock writes .config/mise/locks. rust-anything writes the recorded cases, reference
 // data and its own state under rust/; formatting them would change what they record.
@@ -18,8 +18,18 @@ exclude =
 
 local linters = new Mapping<String, Step> {
   ["byte_order_marker"] = Builtins.byte_order_marker
-  // Builtins.check_added_large_files, skipping files Git LFS stores, as pre-commit's check does.
-  ["check_added_large_files"] = new Step {
+  ["cargo_clippy"] = (Builtins.cargo_clippy) {
+    check =
+      "cargo clippy --manifest-path {{workspace_indicator}} --all-targets --quiet -- -D warnings"
+    fix =
+      "cargo clippy --manifest-path {{workspace_indicator}} --all-targets --fix --allow-dirty --allow-staged --quiet -- -D warnings"
+  }
+  // cargo-deny finds rust/deny.toml from each crate under rust/.
+  ["cargo_deny"] = Builtins.cargo_deny
+  ["cargo_fmt"] = Builtins.cargo_fmt
+  // Skip files Git LFS stores, as pre-commit's check does; hk's doesn't yet:
+  // https://github.com/jdx/hk/issues/1920
+  ["check_added_large_files"] = (Builtins.check_added_large_files) {
     check =
       #"git check-attr -z filter -- {{files}} | xargs -0 -n3 sh -c '[ "$2" = lfs ] || printf "%s\0" "$0"' | xargs -0 -r hk util check-added-large-files"#
   }

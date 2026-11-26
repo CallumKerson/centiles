@@ -62,8 +62,13 @@ description = "Pin versions and install the git hooks in a new project"
 run = ["git rev-parse --git-dir >/dev/null 2>&1 || git init --quiet", "mise run pin", "hk install"]
 
 [tasks.test]
-description = "Run tests with pytest"
-run = "uv run pytest"
+description = "Run the Python tests with pytest and the Rust tests with cargo"
+run = [
+  "uv run pytest",
+  "cargo test --locked --manifest-path rust/centiles-rs/Cargo.toml",
+  # Replays every recorded case in rust/app-cases against the Rust CLI
+  "cargo test --locked --manifest-path rust/app/Cargo.toml",
+]
 
 [tasks.update-template]
 description = "Pull in changes from the python-template copier template"
@@ -75,8 +80,11 @@ version = "0.26.1"
 [tools.aube]
 version = "2.10.0"
 
+[tools.cargo-deny]
+version = "0.22.0"
+
 [tools.hk]
-version = "2.6.0"
+version = "2.14.0"
 
 [tools.jactionlint]
 version = "2.5.0"
@@ -93,6 +101,10 @@ version = "0.17.0"
 
 [tools.rumdl]
 version = "0.2.79"
+
+[tools.rust]
+version = "1.100.0"
+components = "clippy,rustfmt"
 
 [tools.shellcheck]
 version = "0.11.0"
